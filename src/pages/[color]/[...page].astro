@@ -1,0 +1,211 @@
+---
+import sortedColors from '../../../data/sortedColors.json'
+import Layout from '../../layouts/Layout.astro';
+// https://docs.astro.build/en/core-concepts/routing/#nested-pagination
+export async function getStaticPaths({ paginate }) {
+
+  const allTags = Object.keys(sortedColors);
+  // For every tag, return a paginate() result.
+  // Make sure that you pass `{params: {tag}}` to `paginate()`
+  // so that Astro knows which tag grouping the result is for.
+  return allTags.flatMap((color) => {
+    const filteredColors = sortedColors[color]
+    return paginate(filteredColors, {
+      params: { color },
+      pageSize: 2500
+    });
+  });
+}
+const { color,page } = Astro.props;
+const params = Astro.params;
+
+const pagination = Array.apply(null, Array(page.lastPage)).map((pg, i) => {
+    const firstIndex = i * page.size;
+    return {
+      color: '#' + sortedColors[params.color][firstIndex],
+      current: i + 1 === page.currentPage,
+      text: i + 1,
+      url: i ? '/' + params.color + '/' + (i + 1) : '/' + params.color + '/',
+    }
+})
+---
+<style>
+	html {
+    scroll-padding-top: 4.875em;
+  }
+  * {
+    box-sizing: border-box;
+  }
+  header {
+    margin-bottom: 5%;
+  }
+  ol {
+    list-style-position: inside;
+    padding: 0;
+    margin: 0;
+	color: #000;
+    display: inline-block;
+    border-radius: 1em;
+    overflow:hidden;
+  }
+  li {
+    max-width: 100%;
+    min-width: 14em;
+    float: left;
+    margin: 0;
+    padding: 0 0 0 1.5em;
+    margin: 0;
+  }
+  li a {
+    display: inline-block;
+    padding: 1em 1.5em;
+    color: #fff;
+    text-decoration: none;
+    outline: none;
+    border: .125em solid transparent;
+    border-radius: 1em;
+    margin: .5em 0;
+  }
+  li a:focus {
+	  border-color: #fff;
+  }
+  li span {
+	  border-bottom: .125em solid;
+  }
+  li a:focus span {
+	  border-color: transparent;
+  }
+
+  h1 {
+    font-size:4em;
+    font-weight: 900;
+  }
+  h1 span {
+    /* color: #fff; */
+    font-weight: 400;
+  }
+  :-o-prefocus, .top {
+    display: none;
+  }
+  @supports(top: 100dvh){
+    .top {
+      top: 100dvh;
+    }
+  }
+  :-o-prefocus, footer a {
+    font-size: 1.1875em;
+    text-align: center;
+    display: block;
+    padding: 1em 0;
+  }
+  .pagination {
+    width: 40em;
+    max-width: 100%;
+    min-width: 90%;
+    margin: auto;
+    padding: 0 .125em;
+    border:none;
+
+  }
+  .pagenav a,
+  .pagination a {
+    color: #000;
+    border-radius: 1em;
+    padding: 1em 1.5em;
+    display: inline-block;
+    text-align: center;
+    line-height: 1;
+    border: .125em solid transparent;
+    outline:none;
+    flex-grow: 1;
+    margin: .5em .5em 0 0;
+  }
+  .pagenav a:hover,
+  .pagination a:hover {
+    background-image: linear-gradient(rgba(255,255,255,.375), rgba(255,255,255,.375));
+  }
+  .pagenav a:focus,
+  .pagination a:focus {
+    border-color: #fff;
+  }
+  .pagenav a:active span,
+  .pagination a:active span {
+    transform: translateY(.125em);
+  }
+  .pagenav a span,
+  .pagination span {
+    display: inline-block;
+    transition: transform .125s;
+    border-bottom: .125em solid;
+  }
+  .pagination [aria-current] span {
+    color: inherit;
+    /* border-bottom-color: transparent; */
+    font-weight: bold;
+  }
+  .pagination [aria-current]:hover {
+    background-image: none;
+  }
+  .pagenav {
+    position: sticky;
+    top: 0;
+    padding: 0 0 .5em;
+    background: #000;
+  }
+  main {
+    position: relative;
+  }
+</style>
+<Layout title="Welcome to Astro." borderColor={'#' + page.data[0]}>
+  <header>
+    <h1 id="title" style={`color:#${page.data[0]}`}>
+      {params.color} 
+      <span>
+        {(page.currentPage > 1 ? ` page ${page.currentPage} ` : '')}
+      </span>
+    </h1>
+  </header>
+  {()=>{
+    if(pagination.length > 1){
+      return   <nav class="pagination">
+        {pagination.map(pg => {
+          return <a 
+            href={`${pg.url}/`} 
+            style={pg.current ? `color:${pg.color}` : `background-color:${pg.color}`}
+            aria-current={pg.current ? 'page' : null}
+          >
+            <span>
+              {pg.text}
+            </span>
+          </a>
+        })}
+      </nav>
+    }
+  }}
+	<main id="content">
+    <div class="pagenav">
+      <a 
+        href={`#${page.data[0]}`}
+        style={`background-color:#${page.data[0]}`}
+      >
+        <span>
+          Top
+        </span>
+      </a>
+      <a href={`#${page.data[page.data.length - 1]}`} style={`background-color:#${page.data[page.data.length - 1]}`}>
+        <span>
+          Bottom
+        </span>
+      </a>
+    </div>
+		<ol style={`background:#${page.data[0]}`} start={page.start + 1}>
+			{page.data.map((color,index)=>{return <li id={index + 1 + page.start} style={`background:#${color}`}>
+				<a href={`#${color}`} id={color}>
+					<span>
+						#{color}
+					</span>
+				</a>
+			</li>})}
+		</ol>
+	</main>
+</Layout>

@@ -1,0 +1,27 @@
+---
+interface Props {
+	title: string;
+	isHome: boolean;
+	borderColor: string;
+}
+
+const { title, isHome,borderColor = '#fff' } = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Astro description" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		<link rel="stylesheet" href="/style.css">
+	</head>
+	<body>
+		<nav class="container">
+			{isHome ? <h1 class="home"><span>colors.fyi</span></h1> : <a class="home" href="/"><span style={`border-color:${borderColor}`}>colors.fyi</span></a>}
+		</nav>
+		<slot />
+	</body>
+</html>

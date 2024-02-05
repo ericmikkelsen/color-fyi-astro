@@ -1,0 +1,70 @@
+{
+    "crimson": {
+        "headline":"Crimson",
+        "body":"crimson"
+    },
+    "tomato": {
+        "headline":"Tomato",
+        "body":"tomato"
+    },
+    "mediumvioletred": {
+        "headline":"Medium violet red",
+        "body":"medium violet red"
+    },
+    "palevioletred": {
+        "headline":"Pale violet red",
+        "body":"pale violet red"
+    },
+    "deeppink": {
+        "headline":"Deep Pink",
+        "body":"deeppink"
+    },
+    "mediumorchid": {
+        "headline":"Medium orchid",
+        "body":"medium orchid"
+    },
+    "darkviolet": {
+        "headline":"Darkviolet",
+        "body":"dark violet"
+    },
+    "rebeccapurple": {
+        "headline":"Rebecca purple",
+        "body":"Rebecca purple"
+    },
+    "darkorchid": {
+        "headline":"Dark orchid",
+        "body":"dark orchid"
+    },
+    "blueviolet": {
+        "headline":"Blue violet",
+        "body":"blue violet"
+    },
+    "mediumpurple": {
+        "headline":"Medium purple",
+        "body":"medium purple"
+    },
+    "mediumslateblue": {
+        "headline":"Medium slate blue",
+        "body":"medium slate blue"
+    },
+    "slateblue": {
+        "headline":"Slate blue",
+        "body":"slate blue"
+    },
+    "dodgerblue": {
+        "headline":"Dodger blue",
+        "body":"dodger blue"
+    },
+    "royalblue": {
+        "headline":"Royal blue",
+        "body":"royal blue"
+    },
+    "steelblue": {
+        "headline":"Steel blue",
+        "body":"steelblue"
+    },
+    "darkcyan": {
+        "headline":"Dark cyan",
+        "body":"dark cyan"
+    },
+}

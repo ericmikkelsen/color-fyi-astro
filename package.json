@@ -1,0 +1,17 @@
+{
+  "name": "color-fyi-astro",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/netlify": "^4.1.1",
+    "astro": "^4.2.3",
+    "mini-svg-data-uri": "^1.4.4"
+  }
+}
