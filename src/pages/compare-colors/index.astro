@@ -1,0 +1,94 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import colorTable from "../../modules/colorTable.js";
+export const prerender = false;
+const colors = Astro.url.searchParams?.get("colors")?.split(",") || [];
+let colorOutput = "";
+if (colors && colors.length > 1) {
+    colorOutput = colorTable(colors);
+}
+---
+
+<Layout title={"Compare colors"}>
+    <Header color="#fff">Color comparison</Header>
+    <main>
+        <form action="./">
+            <input-params>
+                <label for="colors">
+                    Colors
+                    <textarea cols="30" id="colors" name="colors" rows="10"
+                    >{colors.join(",")}</textarea
+                    >
+                </label>
+            </input-params>
+            <button type="submit">submit</button>
+        </form>
+        <compare-colors data-prerendered="true">
+            <Fragment set:html={colorOutput} />
+        </compare-colors>
+    </main>
+</Layout>
+<style>
+    label {
+        margin: 1.5em 0;
+        display: block;
+        line-height: 2;
+    }
+    textarea {
+        box-sizing: border-box;
+        display: block;
+        width: 100%;
+        padding: 2.5%;
+        border: 0.25em solid transparent;
+        border-radius: 1em;
+    }
+    textarea:focus {
+        border-color: #000;
+        outline: 0.25em solid #fff;
+    }
+    button {
+        color: #fff;
+        background: #000;
+        border: 0.25em solid;
+        appearance: none;
+        padding: 1em 2.5%;
+        border-radius: 1em;
+        font-size: 1em;
+        line-height: 1;
+    }
+</style>
+<style is:global>
+    input-params:defined ~ button {
+        visibility: hidden;
+    }
+    compare-colors p,
+    compare-colors svg {
+        vertical-align: middle;
+    }
+    compare-colors span {
+        display: inline-block;
+    }
+</style>
+<script src="../../modules/input-params.js"></script>
+<script src="../../modules/compare-colors.js"></script>
+<script>
+const getColors = () => {
+  const url = new URL(window.location.href);
+  const colorString = url.searchParams.get('colors');
+  const colors = url.searchParams.get('colors');
+  return colors;
+}
+const setColors = () => {
+  const colors = getColors();
+  const compareColors = document.querySelector('compare-colors');
+  if( compareColors) {
+      compareColors.dataset.colors = colors || '';
+  }
+}
+
+setColors();
+window.addEventListener("popstate", (event) => {
+  setColors();
+});
+</script>
