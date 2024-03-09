@@ -3,7 +3,7 @@ interface Props {
 	color: string;
 }
 
-let { color = '#fff' } = Astro.props;
+let { color = 'inherit' } = Astro.props;
 const headerStyles = `header { color:${color} }`
 ---
 <style>
