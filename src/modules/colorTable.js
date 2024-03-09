@@ -70,7 +70,6 @@ const colorList = (colors, headingLevel = 2, prefix = 'color-list') => {
                 }
                 if(color2) {
                     const contrast = color1.data.contrast(color2.data,"WCAG21")
-                    console.log(contrast)
                     colorObjects[index].colors.push({...color2, contrast: contrast})
                 }
             })
@@ -86,7 +85,6 @@ const colorList = (colors, headingLevel = 2, prefix = 'color-list') => {
         ${colorObjects.map((color,index)=>{
             return `${heading(index+1 + '. ' + color.name.trim())}
                 ${color.colors.map(col => {
-                    console.log(col.data)
                     return `<p>        
                             <span class="${prefix}-color-1">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 16 16">
