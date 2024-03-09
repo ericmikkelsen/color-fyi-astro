@@ -5,7 +5,7 @@ interface Props {
 	borderColor: string;
 }
 
-const { title, isHome,borderColor = '#fff' } = Astro.props;
+const { title, isHome,borderColor = 'var(--color)' } = Astro.props;
 ---
 <!doctype html>
 <html lang="en">
@@ -31,3 +31,10 @@ const { title, isHome,borderColor = '#fff' } = Astro.props;
 		<slot />
 	</body>
 </html>
+<style>
+	@media print {
+        nav {
+            display: none !important;
+        }
+    }
+</style>
