@@ -24,17 +24,17 @@ const a11yObject = (contrast) => {
 const contrastText = (contrast) => {
     const good = contrast >= 4.5;
     const goodForLargeText = contrast >= 3;
-    const iconX = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" stroke="currentColor" stroke-width="4">
+    const iconX = `<svg class="icon-no" xmlns="http://www.w3.org/2000/svg" width="24" height="24" stroke="currentColor" stroke-width="4">
     <path d="m6 6 12 12M6 18 18 6"/>
   </svg>`
     let text = `${iconX} is not accessible`
     if(good) {
-        text = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="4" fill="none">
+        text = `<svg class="icon-yes" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="4" fill="none">
         <path id="a" d="m19.9 5.8-10 11-6-5"/>
     </svg> is accessible`
     } else if (goodForLargeText) {
-        text = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-        style="fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"    
+        text = `<svg class="icon-large" xmlns="http://www.w3.org/2000/svg" width="24" height="24" stroke-width="2"
+        style="fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round"    
             >
          <path d="M19.5 18.7h-15l7.5-13Z"/>
          <path d="M12 10.9v2.4zm0 5v.1z"/>
