@@ -87,3 +87,30 @@ a {
     border-bottom: .125em solid transparent;
     font-weight: 400;
 }
+.big-link {
+    border: .125em solid transparent;
+    border-radius: 1em;
+    box-sizing: border-box;
+    display: inline-block;
+    font-size: 1em;
+    max-height: 1000000px;
+    padding: 1em 0.0625em;
+    text-decoration: none;
+    text-size-adjust: none;
+    outline: none;
+    vertical-align: middle;
+}
+.big-link:focus {
+    border-color: currentColor;
+}
+.big-link span {
+    border-bottom: .125em solid currentColor;
+    border-top: .125em solid transparent;
+}
+.big-link svg {
+    vertical-align: middle;
+}
+.big-link svg ~ span {
+    display: inline-block;
+    margin-right: 1em;
+}
