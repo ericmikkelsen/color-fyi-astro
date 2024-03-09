@@ -21,12 +21,21 @@ const { title, isHome,borderColor = 'var(--color)' } = Astro.props;
 			nav {
 				padding-top: 15%;
 				margin-top: 1em;
+				vertical-align: baseline;
+			}
+			nav > * {
+				margin: 0 1em 0 0;
 			}
 		</style>
 	</head>
 	<body>
 		<nav class="container">
-			{isHome ? <h1 class="home"><span>colors.fyi</span></h1> : <a class="home" href="/"><span style={`border-color:${borderColor}`}>colors.fyi</span></a>}
+			{isHome ? <h1 class="big-link"><span style="border-color: transparent">colors.fyi</span></h1> : <a class="big-link" href="/"><span style={`border-bottom-color:${borderColor}`}>colors.fyi</span></a>}
+			<a href="/compare-colors/" class="big-link">
+				<span>
+					Compare colors
+				</span>
+			</a>
 		</nav>
 		<slot />
 	</body>

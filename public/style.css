@@ -69,24 +69,6 @@ a {
     color: inherit;
     text-decoration: none;
 }
-.home {
-    border: .10526315789em solid transparent;
-    border-radius: 1rem;
-    display: inline-block;
-    font-size: 1.1875em;
-    line-height: 1;
-    margin: 0 0 0.5em;
-    outline: none;
-    padding: 0.81578947368em .10526315789em;
-    text-decoration: none;
-}
-.home:focus {
-    border-color: #fff;
-}
-.home > * {
-    border-bottom: .125em solid transparent;
-    font-weight: 400;
-}
 .big-link {
     border: .125em solid transparent;
     border-radius: 1em;
