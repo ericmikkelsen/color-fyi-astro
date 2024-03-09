@@ -4,11 +4,25 @@ interface Props {
 	isHome: boolean;
 	borderColor: string;
 }
+const navLinks = [
+	{
+		text: 'colors.fyi',
+		url: '/',
+		h1: true,
+	},
+	{
+		text: 'Compare colors',
+		url: '/compare-colors/',
+	},
+].map(link => {
+	link.current = Astro.url.pathname === link.url
+	return link
+});
 
 const { title, isHome,borderColor = 'var(--color)' } = Astro.props;
 ---
 <!doctype html>
-<html lang="en">
+<html lang="en" style={`--accent:${borderColor}`}>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="description" content="Astro description" />
@@ -30,12 +44,16 @@ const { title, isHome,borderColor = 'var(--color)' } = Astro.props;
 	</head>
 	<body>
 		<nav class="container">
-			{isHome ? <h1 class="big-link"><span style="border-color: transparent">colors.fyi</span></h1> : <a class="big-link" href="/"><span style={`border-bottom-color:${borderColor}`}>colors.fyi</span></a>}
-			<a href="/compare-colors/" class="big-link">
-				<span>
-					Compare colors
-				</span>
-			</a>
+			{navLinks.map(link => {
+				return <a 
+					href={link.url} 
+					class="big-link"
+				>
+					<span>
+						{link.text}
+					</span>
+				</a>
+			})}
 		</nav>
 		<slot />
 	</body>
@@ -46,4 +64,7 @@ const { title, isHome,borderColor = 'var(--color)' } = Astro.props;
             display: none !important;
         }
     }
+	.big-link span {
+		border-bottom-color: var(--accent);
+	}
 </style>

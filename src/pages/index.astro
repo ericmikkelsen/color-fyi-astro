@@ -24,14 +24,13 @@ export const colorStyles = Object.keys(colors).map(color => {
         border-radius: 1em;
         overflow: hidden;
     }
-    a {
+    ul a {
         display: block;
-        color: #000;
+        color: #fff;
         padding: 1.5em;
         border-width: .125em;
         border-style: solid;
         border-color: transparent;
-        color: #fff;
         outline:none;
         width: 100%;
         min-height: 4.40625em;
@@ -61,7 +60,7 @@ export const colorStyles = Object.keys(colors).map(color => {
         width: 100%;
         clear: both;
         float:none;
-        margin: 2.631578947% 0 0;
+        margin-top: 2.631578947% 0;
     }
     main li:first-of-type a {
         overflow: hidden;
@@ -90,10 +89,10 @@ export const colorStyles = Object.keys(colors).map(color => {
 			})}
 		</ul>
         <p>This big weird site, is a list of all the colors, that meet WCAG AA criteria for contrast with black and white, and a few other things</p>
-        <p><a class="big-link" href="https://ericmikkelsen.com/">
+        <a class="big-link" href="https://ericmikkelsen.com/">
             <span>
                 Made by Eric Mikkelsen
             </span>
-            </a></p>
+        </a></p>
 	</main>
 </Layout>
