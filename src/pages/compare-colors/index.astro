@@ -26,7 +26,9 @@ if (colors && colors.length > 1) {
         <form action="./">
             <input-params>
                 <label for="colors">
-                    Add a comma seperated list of colors to find out which pairs of colors are accessible or not. For example: #ff0000, #ffffff, #fb0
+                    <span>
+                        Add a comma seperated list of colors to find out which pairs of colors are accessible or not. For example: #ff0000, #ffffff, #fb0
+                    </span>
                     <textarea 
                         cols="30" 
                         id="colors" 
@@ -37,9 +39,7 @@ if (colors && colors.length > 1) {
             </input-params>
             <div class="controls">
                 <label for="color" class="color-picker">
-                    <span>
-                        Or use this color picker to add a color to the box above
-                    </span>
+                    Or use this color picker to add a color to the box above
                     <input value='' name="color" id="color" type="color" class="js-add-color" data-for="colors">
                 </label>
                 <a class="big-link" href="/compare-colors/#colors">
@@ -59,6 +59,8 @@ if (colors && colors.length > 1) {
     label {
         display: block;
         line-height: 2;
+        margin-top: 1em;
+        line-height: 1.5;
     }
     textarea {
         color: #000;
@@ -66,10 +68,10 @@ if (colors && colors.length > 1) {
         display: block;
         width: 100%;
         padding: 2.5%;
-        border: 0.25em solid #000;
+        border: 0.25em solid #fff;
         border-radius: 1em;
-        margin: .5em 0 0;
-        font-size: 1em;
+        margin: 1em 0 0;
+        font-size: 1rem;
     }
     textarea:focus {
         outline: 0.125em solid var(--color);
