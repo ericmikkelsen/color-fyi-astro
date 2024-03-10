@@ -70,10 +70,10 @@ a {
     text-decoration: none;
 }
 p {
-    max-width: 45em;
+    max-width: 33em;
 }
 label span {
-    max-width: 45em;
+    max-width: 33em;
     display: block;
 }
 .big-link {
