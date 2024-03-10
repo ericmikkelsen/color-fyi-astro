@@ -68,10 +68,15 @@ if (colors && colors.length > 1) {
         display: block;
         width: 100%;
         padding: 2.5%;
-        border: 0.25em solid #fff;
+        border: 0.25em solid #000;
         border-radius: 1em;
         margin: 1em 0 0;
         font-size: 1rem;
+    }
+    @media (prefers-color-scheme: dark) {
+        textarea {
+            border-color:transparent;
+        }
     }
     textarea:focus {
         outline: 0.125em solid var(--color);
@@ -127,7 +132,7 @@ if (colors && colors.length > 1) {
         stroke-width: 1.25;
     }
     circle {
-        stroke: var(--color);
+        stroke: rgba(118,118,118,.5);
     }
 </style>
 <script src="../../modules/compare-colors.js"></script>
