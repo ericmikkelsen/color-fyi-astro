@@ -16,6 +16,9 @@ export const colorStyles = Object.keys(colors).map(color => {
     * {
         box-sizing: border-box;
     }
+    circle {
+        stroke: var(--color);
+    }
     ul {
         list-style: none;
         padding: 0;
@@ -77,7 +80,7 @@ export const colorStyles = Object.keys(colors).map(color => {
 	<style is:inline set:html={colorStyles}></style>
     <Header>Colors.fyi</Header>
 	<main>
-        <p>This big weird site, is a list of all the colors, that meet WCAG AA criteria for contrast with black and white, and a few other things</p>
+        <p>This big weird site is a list of all the colors that meet WCAG AA criteria for contrast with black and white, and a few other things</p>
 		<ul>
 			{Object.keys(colors).map(color => {
 				return <li class={color}>
