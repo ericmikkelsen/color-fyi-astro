@@ -4,15 +4,22 @@ import Header from "../../components/Header.astro";
 import Color from "colorjs.io";
 import colorTable from "../../modules/colorTable.js";
 export const prerender = false;
-const colors = Astro.url.searchParams?.get("colors")?.split(",").map(color => {
-    return color.trim();
-}).filter(Boolean) || [];
+const colors =
+    Astro.url.searchParams
+        ?.get("colors")
+        ?.split(",")
+        .map((color) => {
+            return color.trim();
+        })
+        .filter(Boolean) || [];
 const hasColorToAdd = !!Astro.url.searchParams?.get("color") || false;
 if (hasColorToAdd) {
     const colorToAdd = Astro.url.searchParams?.get("color").trim();
-    if(!colors.includes(colorToAdd)){
+    if (!colors.includes(colorToAdd)) {
         colors.push(colorToAdd);
-        return Astro.redirect(`/compare-colors/?colors=${encodeURIComponent( colors.join(', ') )}`);
+        return Astro.redirect(
+            `/compare-colors/?colors=${encodeURIComponent(colors.join(", "))}`,
+        );
     }
 }
 let colorOutput = "";
@@ -20,33 +27,49 @@ if (colors && colors.length > 1) {
     colorOutput = colorTable(colors);
 }
 ---
+
 <Layout title={"Compare colors"}>
     <Header>Compare colors</Header>
     <main>
         <form action="./">
             <label for="colors">
                 <span>
-                    Add a comma seperated list of colors to find out which pairs of colors are accessible or not.
+                    Add a comma seperated list of colors to find out which pairs
+                    of colors are accessible or not.
                 </span>
             </label>
-                <input-params>
-                    <textarea 
-                        cols="30" 
-                        id="colors" 
-                        name="colors" 
-                        rows="3"
-                        >{colors.join(", ")}</textarea>
-                    <div class="input-example">For example: #ff0000, #ffffff, #fb0</div>
-                </input-params>
+            <input-params>
+                <textarea cols="30" id="colors" name="colors" rows="3"
+                    >{colors.join(", ")}</textarea
+                >
+                <div class="input-example">
+                    For example: #ff0000, #ffffff, #fb0
+                </div>
+            </input-params>
             <div class="controls">
                 <label for="color" class="color-picker">
-                    Or use this color picker to add a color to the box above
-                    <input value='' name="color" id="color" type="color" class="js-add-color" data-for="colors">
+                    <input
+                        value=""
+                        name="color"
+                        id="color"
+                        type="color"
+                        class="js-add-color"
+                        data-for="colors"
+                    />
+                    <span> Add a color to the box above</span>
                 </label>
-                <a class="big-link" href="/compare-colors/#colors">
-                    <svg class="icon-no" xmlns="http://www.w3.org/2000/svg" width="24" height="24" stroke="currentColor" stroke-width="4">
-                        <path d="m6 6 12 12M6 18 18 6"/>
-                    </svg><span>Clear colors</span>
+                <a href="/compare-colors/#clear-colors" id="clear-colors">
+                    <svg
+                        class="icon-no"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        stroke="currentColor"
+                        stroke-width="4"
+                    >
+                        <path d="m6 6 12 12M6 18 18 6"></path>
+                    </svg>
+                    <span>Clear colors</span>
                 </a>
             </div>
             <button type="submit">submit</button>
@@ -64,33 +87,32 @@ if (colors && colors.length > 1) {
         line-height: 1.5;
     }
     textarea {
-        color: #000;
-        box-sizing: border-box;
-        display: block;
-        width: 100%;
-        padding: 2.5%;
         border: 0.25em solid #000;
-        border-radius: 1em;
-        margin: 1em 0 0;
-        font-size: 1rem;
         border-bottom: 0;
-        border-bottom:0;
+        border-radius: 1em;
         border-bottom-left-radius: 0;
         border-bottom-right-radius: 0;
+        box-sizing: border-box;
+        color: #000;
+        display: block;
+        font-size: 1rem;
+        margin: 1em 0 0;
+        padding: 2.5%;
+        resize: vertical;
+        width: 100%;
     }
     .input-example {
         margin: 0 0 0;
-        background-color: rgba(118,118,118,.5);
-        padding: .5em 2.5%;
-        border: .25em solid currentColor;
+        background-color: rgba(118, 118, 118, 0.5);
+        padding: 0.5em 2.5%;
+        border: 0.25em solid currentColor;
         border-top: 0;
         border-bottom-left-radius: 1em;
         border-bottom-right-radius: 1em;
-
     }
     @media (prefers-color-scheme: dark) {
         textarea {
-            border-color:transparent;
+            border-color: transparent;
         }
     }
     textarea {
@@ -106,34 +128,81 @@ if (colors && colors.length > 1) {
         font-size: 1em;
         line-height: 1;
     }
-    .controls {
-        display: flex;
-        align-items: baseline;
+    .controls span {
+        display: inline;
     }
     .controls > * {
-        margin: 0 1em 0 0;
+        margin: 1em 1em 0 0;
         vertical-align: baseline;
-    }
-    .controls label {
-        padding: 1em 0;
-    }
-    .color-picker {
         display: inline-block;
+        border: 0.25em solid currentColor;
+        line-height: 1;
+        font-size: 1em;
+        padding: 0.5em 2.5%;
+        border-radius: 1em;
+    }
+    @media (prefers-color-scheme: light) {
+        .controls > * {
+            color: var(--bg);
+            border-color: var(--color);
+            background: var(--color);
+        }
+    }
+    .controls input {
+        border-radius: 100em;
+    }
+    .controls label:focus-within,
+    .controls a:focus {
+        outline: 0.125em solid #767676;
+        outline-offset: 0.25em;
+    }
+    .controls svg,
+    .controls input[type="color"] {
+        appearance: none;
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        border: 0;
+        display: inline-block;
+        font-size: 16px;
+        font-size: 1rem;
+        line-height: 1;
+        vertical-align: bottom;
+        padding: 0;
+        height: 1.5em;
+        width: 1.5em;
+        overflow: hidden;
     }
     @media print {
         form {
             display: none !important;
         }
     }
+    ::-webkit-color-swatch-wrapper {
+        padding: 0;
+    }
+
+    ::-webkit-color-swatch {
+        border: 0;
+        border-radius: 0;
+    }
+
+    ::-moz-color-swatch,
+    ::-moz-focus-inner {
+        border: 0;
+    }
+
+    ::-moz-focus-inner {
+        padding: 0;
+    }
 </style>
 <style is:global>
     input-params {
         display: block;
         border-radius: 1em;
-        outline-offset: .25em;
+        outline-offset: 0.25em;
     }
     input-params:focus-within {
-        outline: 0.125em solid var(--color);
+        outline: 0.125em solid #767676;
     }
     input-params:defined ~ button {
         display: none;
@@ -145,9 +214,6 @@ if (colors && colors.length > 1) {
     compare-colors span {
         display: inline-block;
     }
-    add-color {
-        display: block;
-    }
     .icon-no {
         stroke-width: 4.5;
     }
@@ -158,36 +224,38 @@ if (colors && colors.length > 1) {
         stroke-width: 1.25;
     }
     circle {
-        stroke: rgba(118,118,118,.5);
+        stroke: rgba(118, 118, 118, 0.5);
     }
 </style>
 <script src="../../modules/compare-colors.js"></script>
 <script src="../../modules/input-params.js"></script>
 <script>
-const getColors = () => {
-  const url = new URL(window.location.href);
-  const colorString = url.searchParams.get('colors');
-  const colors = url.searchParams.get('colors');
-  return colors;
-}
-const setColors = () => {
-  const colors = getColors();
-  const compareColors = document.querySelector('compare-colors');
-  if( compareColors) {
-      compareColors.dataset.colors = colors || '';
-  }
-}
+    const getColors = () => {
+        const url = new URL(window.location.href);
+        const colorString = url.searchParams.get("colors");
+        const colors = url.searchParams.get("colors");
+        return colors;
+    };
+    const setColors = () => {
+        const colors = getColors();
+        const compareColors = document.querySelector("compare-colors");
+        if (compareColors) {
+            compareColors.dataset.colors = colors || "";
+        }
+    };
 
-setColors();
-window.addEventListener("popstate", (event) => {
-  setColors();
-});
-const colorPicker = document.querySelector('.js-add-color');
-colorPicker.addEventListener('change',(event => {
-    const input = document.getElementById(colorPicker.dataset.for);
-    console.log(colorPicker)
-    input.value = input.value ? `${input.value}, ${colorPicker.value}` : colorPicker.value
-    const changeEvent = new Event('input');
-    input.dispatchEvent(changeEvent);
-}))
+    setColors();
+    window.addEventListener("popstate", (event) => {
+        setColors();
+    });
+    const colorPicker = document.querySelector(".js-add-color");
+    colorPicker.addEventListener("change", (event) => {
+        const input = document.getElementById(colorPicker.dataset.for);
+        console.log(colorPicker);
+        input.value = input.value
+            ? `${input.value}, ${colorPicker.value}`
+            : colorPicker.value;
+        const changeEvent = new Event("input");
+        input.dispatchEvent(changeEvent);
+    });
 </script>
