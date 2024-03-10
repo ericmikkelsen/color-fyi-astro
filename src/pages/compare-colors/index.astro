@@ -33,7 +33,7 @@ if (colors && colors.length > 1) {
                         cols="30" 
                         id="colors" 
                         name="colors" 
-                        rows="8"
+                        rows="3"
                     >{colors.join(", ")}</textarea>
                 </label>
             </input-params>
@@ -90,6 +90,9 @@ if (colors && colors.length > 1) {
     .controls > * {
         margin: 0 1em 0 0;
         vertical-align: baseline;
+    }
+    .controls label {
+        padding: 1em 0;
     }
     .color-picker {
         display: inline-block;
