@@ -1,4 +1,5 @@
 ---
+import Header from "../components/Header.astro";
 import Layout from '../layouts/Layout.astro';
 import colors from '../../data/sortedColors.json'
 import SVGGradient from '../modules/SVGGradient'
@@ -74,7 +75,9 @@ export const colorStyles = Object.keys(colors).map(color => {
 </style>
 <Layout title="Welcome to Astro." isHome={true}>
 	<style is:inline set:html={colorStyles}></style>
+    <Header>Colors.fyi</Header>
 	<main>
+        <p>This big weird site, is a list of all the colors, that meet WCAG AA criteria for contrast with black and white, and a few other things</p>
 		<ul>
 			{Object.keys(colors).map(color => {
 				return <li class={color}>
@@ -88,7 +91,6 @@ export const colorStyles = Object.keys(colors).map(color => {
 				</li>
 			})}
 		</ul>
-        <p>This big weird site, is a list of all the colors, that meet WCAG AA criteria for contrast with black and white, and a few other things</p>
         <a class="big-link" href="https://ericmikkelsen.com/">
             <span>
                 Made by Eric Mikkelsen

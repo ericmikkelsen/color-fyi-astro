@@ -1,5 +1,6 @@
 ---
 import sortedColors from '../../../data/sortedColors.json'
+import Header from "../../components/Header.astro";
 import Layout from '../../layouts/Layout.astro';
 // https://docs.astro.build/en/core-concepts/routing/#nested-pagination
 export async function getStaticPaths({ paginate }) {
@@ -103,7 +104,7 @@ const pagination = Array.apply(null, Array(page.lastPage)).map((pg, i) => {
     width: 40em;
     max-width: 100%;
     min-width: 90%;
-    margin: auto;
+    margin: 1em auto 0;
     padding: 0 .125em;
     border:none;
 
@@ -122,6 +123,12 @@ const pagination = Array.apply(null, Array(page.lastPage)).map((pg, i) => {
     outline:none;
     flex-grow: 1;
     margin: .5em .5em 0 0;
+  }
+  .pagenav a,
+  .pagenav a span,
+  .pagination a,
+  .pagination a span {
+    line-height: 1;
   }
   .pagenav a:hover,
   .pagination a:hover {
@@ -150,6 +157,7 @@ const pagination = Array.apply(null, Array(page.lastPage)).map((pg, i) => {
     background-image: none;
   }
   .pagenav {
+    margin-top: 1em;
     position: sticky;
     top: 0;
     padding: 0 0 .5em;
@@ -161,14 +169,12 @@ const pagination = Array.apply(null, Array(page.lastPage)).map((pg, i) => {
   }
 </style>
 <Layout title="Welcome to Astro." borderColor={'#' + page.data[0]}>
-  <header>
-    <h1 id="title" style={`color:#${page.data[0]}`}>
-      {params.color} 
-      <span>
-        {(page.currentPage > 1 ? ` page ${page.currentPage} ` : '')}
-      </span>
-    </h1>
-  </header>
+  <Header>
+    <span style={`color:#${page.data[0]}`}>
+      {params.color}
+    </span>
+    {(page.currentPage > 1 ? ` page ${page.currentPage} ` : '')}
+  </Header>
   {()=>{
     if(pagination.length > 1){
       return   <nav class="pagination">

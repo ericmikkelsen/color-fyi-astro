@@ -69,6 +69,13 @@ a {
     color: inherit;
     text-decoration: none;
 }
+p {
+    max-width: 45em;
+}
+label span {
+    max-width: 45em;
+    display: block;
+}
 .big-link {
     border: .125em solid transparent;
     border-radius: 1em;
@@ -95,4 +102,7 @@ a {
 .big-link svg ~ span {
     display: inline-block;
     margin-right: 1em;
+}
+.big-link[aria-current="page"] span {
+    border-bottom-color: transparent !important;
 }
