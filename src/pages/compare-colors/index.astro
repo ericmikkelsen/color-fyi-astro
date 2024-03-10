@@ -24,19 +24,20 @@ if (colors && colors.length > 1) {
     <Header>Compare colors</Header>
     <main>
         <form action="./">
-            <input-params>
-                <label for="colors">
-                    <span>
-                        Add a comma seperated list of colors to find out which pairs of colors are accessible or not. For example: #ff0000, #ffffff, #fb0
-                    </span>
+            <label for="colors">
+                <span>
+                    Add a comma seperated list of colors to find out which pairs of colors are accessible or not.
+                </span>
+            </label>
+                <input-params>
                     <textarea 
                         cols="30" 
                         id="colors" 
                         name="colors" 
                         rows="3"
-                    >{colors.join(", ")}</textarea>
-                </label>
-            </input-params>
+                        >{colors.join(", ")}</textarea>
+                    <div class="input-example">For example: #ff0000, #ffffff, #fb0.</div>
+                </input-params>
             <div class="controls">
                 <label for="color" class="color-picker">
                     Or use this color picker to add a color to the box above
@@ -72,6 +73,20 @@ if (colors && colors.length > 1) {
         border-radius: 1em;
         margin: 1em 0 0;
         font-size: 1rem;
+        border-bottom: 0;
+        border-bottom:0;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+    .input-example {
+        margin: 0 0 0;
+        background-color: rgba(118,118,118,.5);
+        padding: .5em 2.5%;
+        border: .25em solid currentColor;
+        border-top: 0;
+        border-bottom-left-radius: 1em;
+        border-bottom-right-radius: 1em;
+
     }
     @media (prefers-color-scheme: dark) {
         textarea {
@@ -91,6 +106,10 @@ if (colors && colors.length > 1) {
         border-radius: 1em;
         font-size: 1em;
         line-height: 1;
+    }
+    .controls {
+        display: flex;
+        align-items: baseline;
     }
     .controls > * {
         margin: 0 1em 0 0;
