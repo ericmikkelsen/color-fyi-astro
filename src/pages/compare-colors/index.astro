@@ -36,7 +36,7 @@ if (colors && colors.length > 1) {
                         name="colors" 
                         rows="3"
                         >{colors.join(", ")}</textarea>
-                    <div class="input-example">For example: #ff0000, #ffffff, #fb0.</div>
+                    <div class="input-example">For example: #ff0000, #ffffff, #fb0</div>
                 </input-params>
             <div class="controls">
                 <label for="color" class="color-picker">
@@ -93,9 +93,8 @@ if (colors && colors.length > 1) {
             border-color:transparent;
         }
     }
-    textarea:focus {
-        outline: 0.125em solid var(--color);
-        outline-offset: .125em;
+    textarea {
+        outline: none;
     }
     button {
         color: var(--bg);
@@ -128,6 +127,14 @@ if (colors && colors.length > 1) {
     }
 </style>
 <style is:global>
+    input-params {
+        display: block;
+        border-radius: 1em;
+        outline-offset: .25em;
+    }
+    input-params:focus-within {
+        outline: 0.125em solid var(--color);
+    }
     input-params:defined ~ button {
         display: none;
     }
