@@ -29,6 +29,7 @@ const pagination = Array.apply(null, Array(page.lastPage)).map((pg, i) => {
       url: i ? '/' + params.color + '/' + (i + 1) : '/' + params.color + '/',
     }
 })
+const pageText = page.currentPage > 1 ? ` page ${page.currentPage} ` : ''
 ---
 <style>
 	html {
@@ -167,12 +168,12 @@ const pagination = Array.apply(null, Array(page.lastPage)).map((pg, i) => {
     position: relative;
   }
 </style>
-<Layout title="Welcome to Astro." borderColor={'#' + page.data[0]}>
+<Layout title={params.color +' '+ pageText} borderColor={'#' + page.data[0]}>
   <Header>
     <span style={`color:#${page.data[0]}`}>
       {params.color}
     </span>
-    {(page.currentPage > 1 ? ` page ${page.currentPage} ` : '')}
+    {pageText}
   </Header>
   {()=>{
     if(pagination.length > 1){
