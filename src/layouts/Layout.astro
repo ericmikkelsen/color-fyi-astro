@@ -27,9 +27,8 @@ const { title, isHome,borderColor = 'var(--color)' } = Astro.props;
 		<meta charset="UTF-8" />
 		<meta name="description" content="Astro description" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
+		<link rel="icon" href="/favicon.ico" sizes="32x32">
 		<link rel="stylesheet" href="/style.css">
 		<style>
 			nav {
@@ -41,6 +40,9 @@ const { title, isHome,borderColor = 'var(--color)' } = Astro.props;
 				margin: 0 1em 0 0;
 			}
 		</style>
+		<link rel="icon" href="/icon.svg" type="image/svg+xml">
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png"><!-- 180×180 -->
+		<link rel="manifest" href="/manifest.webmanifest">
 	</head>
 	<body>
 		<nav class="container">
