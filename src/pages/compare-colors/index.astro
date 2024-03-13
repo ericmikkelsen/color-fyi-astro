@@ -110,9 +110,13 @@ if (colors && colors.length > 1) {
         border-bottom-left-radius: 1em;
         border-bottom-right-radius: 1em;
     }
+    .input-example::selection {
+        color: var(--bg);
+        background-color:  var(--color);
+    }
     @media (prefers-color-scheme: dark) {
         textarea {
-            border-color: transparent;
+            border-color: #fff;
         }
     }
     textarea {
@@ -153,7 +157,7 @@ if (colors && colors.length > 1) {
     }
     .controls label:focus-within,
     .controls a:focus {
-        outline: 0.125em solid #767676;
+        outline: 0.125em solid var(--color);
         outline-offset: 0.25em;
     }
     .controls svg,
@@ -199,7 +203,7 @@ if (colors && colors.length > 1) {
         outline-offset: 0.25em;
     }
     input-params:focus-within {
-        outline: 0.125em solid #767676;
+        outline: 0.125em solid var(--color);
     }
     input-params:defined ~ button {
         display: none;
