@@ -87,7 +87,7 @@ const colorList = (colors, headingLevel = 2, prefix = 'color-list') => {
     if(colorObjects.length > 2 ) {
         return `<div class="${prefix}">
             ${colorObjects.map((color,index)=>{
-                return `${heading(index+1 + '. ' + color.name.trim())}
+                return `${heading(index+1 + `<span style="color:${color.data}">.</span> ` + color.name.trim())}
                     ${color.colors.map(col => {
                         return `<p>        
                                 ${colorSwatch(color.name,color.data,1)}
