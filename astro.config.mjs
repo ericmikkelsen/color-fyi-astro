@@ -1,9 +1,10 @@
 import { defineConfig } from 'astro/config';
-import netlify from '@astrojs/netlify/static';
+import netlify from '@astrojs/netlify/functions';
 
 export default defineConfig({
-  output: 'hybrid',
+  site: 'https://colors.fyi',
+  output: 'server',
   adapter: netlify({
-    cacheOnDemandPages: true,
+    edgeMiddleware: true,
   }),
 });
