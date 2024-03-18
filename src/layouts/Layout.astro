@@ -1,8 +1,13 @@
 ---
+import Meta from '../components/Meta.astro'
 interface Props {
-	title: string;
-	isHome: boolean;
+	alt:string;
 	borderColor: string;
+	description: string;
+	image: string;
+	isHome: boolean;
+	title: string;
+	url:string;
 }
 const navLinks = [
 	{
@@ -19,13 +24,20 @@ const navLinks = [
 	return link
 });
 
-const { title, isHome,borderColor = 'var(--color)' } = Astro.props;
+const { 
+	title, 
+	isHome,
+	alt="",
+	borderColor = 'var(--color)',
+	description="",
+	image="",
+    url="",
+} = Astro.props;
 ---
 <!doctype html>
 <html lang="en" style={`--accent:${borderColor}`}>
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
 		<meta name="viewport" content="width=device-width" />
 		<title>{title}</title>
 		<link rel="stylesheet" href="/style.css">
@@ -46,6 +58,12 @@ const { title, isHome,borderColor = 'var(--color)' } = Astro.props;
 		<link rel="icon" href="/icon.svg" type="image/svg+xml">
 		<link rel="apple-touch-icon" href="/apple-touch-icon.png"><!-- 180×180 -->
 		<link rel="manifest" href="/manifest.webmanifest">
+		<Meta
+			description={description}
+			image={image}
+			url={url}
+			title={title}
+		/>
 	</head>
 	<body>
 		<nav class="container">
