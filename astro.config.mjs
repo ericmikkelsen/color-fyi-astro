@@ -9,7 +9,7 @@ export default defineConfig({
   }),
   vite: {
     ssr: {
-      external: ['sharp', 'color','detect-libc','semver'],
+      external: ['sharp'],
     }
   }
 });
