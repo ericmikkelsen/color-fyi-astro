@@ -7,4 +7,9 @@ export default defineConfig({
   adapter: netlify({
     edgeMiddleware: true,
   }),
+  vite: {
+    ssr: {
+      external: ['sharp', 'color','detect-libc','semver'],
+    }
+  }
 });
