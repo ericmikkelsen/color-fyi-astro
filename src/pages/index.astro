@@ -3,6 +3,7 @@ import Header from "../components/Header.astro";
 import Layout from '../layouts/Layout.astro';
 import colors from '../../data/sortedColors.json'
 import SVGGradient from '../modules/SVGGradient'
+export const prerender = true;
 export const colorStyles = Object.keys(colors).map(color => {
 	const color1 = colors[color][0];
 	const color2 = colors[color].pop();

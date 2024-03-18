@@ -3,6 +3,7 @@ import sortedColors from '../../../data/sortedColors.json'
 import Header from "../../components/Header.astro";
 import Layout from '../../layouts/Layout.astro';
 // https://docs.astro.build/en/core-concepts/routing/#nested-pagination
+export const prerender = true;
 export async function getStaticPaths({ paginate }) {
 
   const allTags = Object.keys(sortedColors);
