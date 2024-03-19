@@ -14,13 +14,13 @@ export async function GET(context: APIContext) {
     const largeText = !noGood && contrast < 4.5;
     const good = contrast >= 4.5;
     const svg = `
-    <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200">
-      <path ${noGood ? '' : 'fill="#fff" '} d="M0 0h1200v1200H0z"/>
-      <path fill="${color1}" d="M0 0h400v1200H0z"/>
-      <path fill="${color2}" d="M400 0h400v1200H400z"/>
-      ${noGood ? '<path fill="none" stroke="#fff" stroke-width="80" d="m887 482 236 236m-236 0 236-236"/>' : ''}
-      ${largeText ? '<path fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" d="M20 19H5l7-13Zm-8-8v2zm0 5v0Z" transform="matrix(18.71 0 0 18.81 781 371)"/>' : ''}
-      ${good ? '<path fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="30" d="M1144 504 971 696l-104-87"/>' : ''}
+    <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="600" viewBox="0 0 1200 600">
+      <rect ${noGood ? '' : 'fill="#fff" '} width="1200" height="630"/>
+      <rect fill="${color1}" width="400" height="630" />
+      <rect fill="${color2}" width="400" height="630" x="400"/>
+      ${noGood ? ' <path stroke="#fff" stroke-width="80" d="M887.4 197.1 1123.2 433m-235.8 0 235.8-236"/>' : ''}
+      ${largeText ? '<path stroke="#000" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" d="M19.5 18.7h-15l7.5-13ZM12 10.9v2.4zm0 5v.1Z" transform="matrix(18.71 0 0 18.81 780.8 85.5)"/>' : ''}
+      ${good ? '<path stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="30" d="M1143.8 219.2 970.7 410.8l-104-87"/>' : ''}
     </svg>`;
     const png = new Resvg(svg, { background: "#000" }).render().asPng();
     return new Response(png,{
