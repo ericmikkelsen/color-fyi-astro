@@ -15,8 +15,7 @@
     "@sindresorhus/slugify": "^2.2.1",
     "astro": "^4.2.3",
     "colorjs.io": "^0.5.0",
-    "mini-svg-data-uri": "^1.4.4",
-    "sharp": "^0.33.2"
+    "mini-svg-data-uri": "^1.4.4"
   },
   "devDependencies": {
     "@types/sharp": "^0.32.0"
