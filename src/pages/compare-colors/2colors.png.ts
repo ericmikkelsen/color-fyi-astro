@@ -20,7 +20,7 @@ export async function GET(context: APIContext) {
       <rect fill="${color2}" width="400" height="630" x="400"/>
       ${noGood ? ' <path stroke="#fff" stroke-width="80" d="M887.4 197.1 1123.2 433m-235.8 0 235.8-236"/>' : ''}
       ${largeText ? '<path stroke="#000" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" d="M19.5 18.7h-15l7.5-13ZM12 10.9v2.4zm0 5v.1Z" transform="matrix(18.71 0 0 18.81 780.8 85.5)"/>' : ''}
-      ${good ? '<path stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="30" d="M1143.8 219.2 970.7 410.8l-104-87"/>' : ''}
+      ${good ? '<path stroke="#000" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="30" d="M1143.8 219.2 970.7 410.8l-104-87"/>' : ''}
     </svg>`;
     const png = new Resvg(svg, { background: "#000" }).render().asPng();
     return new Response(png,{
