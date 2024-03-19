@@ -1,7 +1,8 @@
-import sharp from "sharp";
+import { Resvg } from "@resvg/resvg-js";
 import type { APIContext } from 'astro';
 import getColors from "../../modules/getColors";
 export async function GET(context: APIContext) {
+  // https://www.polpiella.dev/generating-beautiful-open-graph-images-dynamically
   const url = new URL(context.request.url);
   const colorString = url.searchParams.get('colors');
   const colors = getColors(colorString.split(','))
@@ -21,8 +22,8 @@ export async function GET(context: APIContext) {
       ${largeText ? '<path fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" d="M20 19H5l7-13Zm-8-8v2zm0 5v0Z" transform="matrix(18.71 0 0 18.81 781 371)"/>' : ''}
       ${good ? '<path fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="30" d="M1144 504 971 696l-104-87"/>' : ''}
     </svg>`;
-    const png = sharp(Buffer.from(svg)).png({colours:8});
-    return new Response(await png.toBuffer(),{
+    const png = new Resvg(svg, { background: "#000" }).render().asPng();
+    return new Response(png,{
       status: 200,
       headers: {
         "Content-Type": "image/png",
