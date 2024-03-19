@@ -1,11 +1,13 @@
 # build output
 dist/
+.netlify
 
 # generated types
 .astro/
 
 # dependencies
 node_modules/
+!node_modules/sharp/
 
 # logs
 npm-debug.log*
