@@ -7,8 +7,8 @@ export default (color1, color2) => {
         const good = contrast >= 4.5;
         let text = `${colors[0].name} with ${colors[1].name} is not accessible`;
         let description = `${colors[0].name} and ${colors[1].name} have a contrast ratio of ${parseFloat(contrast).toString()} to 1.`
-            +` In order to be accessible, text and background colors need at least a contrast of at least 4.5 to 1 to or 3 to 1 for large text.`
-            +` Large text is considered at least 24px or bold(700) and at least 19px.`
+            +` In order to be accessible, text and background colors need a contrast of at least 4.5 to 1 or 3 to 1 for large text.`
+            +` Large text is considered at least 24px or bold(700) and 19px or larger.`
         if( onlyLargeText ) {
             text = `${colors[0].name} with ${colors[1].name} is only accessible with large text`;
         } else if ( good ) {
