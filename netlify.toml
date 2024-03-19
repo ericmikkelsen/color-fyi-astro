@@ -1,4 +1,0 @@
-[functions]
-  node_bundler = "esbuild"
-  included_files = ["./node_modules/sharp/**/*"]
-  external_node_modules = ["sharp"]
