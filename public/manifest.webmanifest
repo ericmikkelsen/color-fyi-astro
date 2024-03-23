@@ -1,6 +1,13 @@
 {
-    "icons": [
-      { "src": "/icon-192.png", "type": "image/png", "sizes": "192x192" },
-      { "src": "/icon-512.png", "type": "image/png", "sizes": "512x512" }
-    ]
-  }
+  "background_color": "#000",
+  "display": "minimal-ui",
+  "display_override": "standalone",
+  "id":"colors",
+  "icons": [
+    { "src": "/icon-192.png", "type": "image/png", "sizes": "192x192" },
+    { "src": "/icon-512.png", "type": "image/png", "sizes": "512x512" }
+  ],
+  "lang": "en",
+  "short_name": "Colors",
+  "start_url": "https://colors.fyi",
+}
