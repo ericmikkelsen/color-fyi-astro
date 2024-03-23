@@ -36,7 +36,7 @@ let image = '';
 let title = 'Compare colors';
 let description = '';
 if (colors.length === 2) {
-    image = `${url}/compare-colors/2colors.png?colors=${encodeURIComponent(colors[0])},${encodeURIComponent(colors[1])}`;
+    image = `${url}/.netlify/images?url=compare-colors/2colors.png?colors=${encodeURIComponent(colors[0])},${encodeURIComponent(colors[1])}`;
     let comparisonText = compare2ColorsText(colors[0],colors[1]);
     // console.log(comparisonText);
     if(comparisonText) {
