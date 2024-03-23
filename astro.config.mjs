@@ -1,7 +1,7 @@
 import { defineConfig } from 'astro/config';
 import netlify from '@astrojs/netlify/functions';
 import sitemap from "@astrojs/sitemap";
-
+import { VitePWA } from "vite-plugin-pwa"
 // https://astro.build/config
 export default defineConfig({
   adapter: netlify({
@@ -15,7 +15,6 @@ export default defineConfig({
 		plugins: [
 			VitePWA({
 				registerType: "autoUpdate",
-				manifest,
 				workbox: {
 				  globDirectory: 'dist',
 				  globPatterns: [
