@@ -8,6 +8,7 @@
     { "src": "/icon-512.png", "type": "image/png", "sizes": "512x512" ,"purpose": "maskable"}
   ],
   "lang": "en",
+  "name": "Colors.fyi",
   "short_name": "Colors",
-  "start_url": "https://colors.fyi",
+  "start_url": "https://colors.fyi"
 }
