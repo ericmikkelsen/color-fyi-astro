@@ -1,0 +1,15 @@
+{
+  "background_color": "#000",
+  "display": "minimal-ui",
+  "display_override": "standalone",
+  "id":"colors",
+  "icons": [
+    { "src": "/icon-192.png", "type": "image/png", "sizes": "192x192" ,"purpose": "any"},
+    { "src": "/icon-512.png", "type": "image/png", "sizes": "512x512" ,"purpose": "maskable"}
+  ],
+  "lang": "en",
+  "name": "Colors.fyi",
+  "short_name": "Colors",
+  "start_url": "https://colors.fyi",
+  "theme_color": "#000"
+}
