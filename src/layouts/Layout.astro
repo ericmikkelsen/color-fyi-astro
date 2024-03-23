@@ -6,6 +6,7 @@ interface Props {
 	description: string;
 	image: string;
 	isHome: boolean;
+	theme_color: string,
 	title: string;
 	url:string;
 }
@@ -31,6 +32,7 @@ const {
 	borderColor = 'var(--color)',
 	description="",
 	image="",
+	theme_color,
     url="",
 } = Astro.props;
 ---
@@ -40,6 +42,8 @@ const {
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<title>{title}</title>
+		<meta name="theme-color" media="(prefers-color-scheme: light)" content={theme_color || '#fff'} />
+		<meta name="theme-color" media="(prefers-color-scheme: dark)" content={theme_color || '#000'} />	
 		<link rel="stylesheet" href="/style.css">
 		<style>
 			nav {
