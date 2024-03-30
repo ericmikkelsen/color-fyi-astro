@@ -1,8 +1,10 @@
 ---
+import type { arrayOutputType } from 'astro/zod';
 import Meta from '../components/Meta.astro'
 interface Props {
 	alt:string;
 	borderColor: string;
+	classList: Array<string>;
 	description: string;
 	image: string;
 	isHome: boolean;
@@ -30,6 +32,7 @@ const {
 	isHome,
 	alt="",
 	borderColor = 'var(--color)',
+	classList = [],
 	description="",
 	image="",
 	theme_color,
@@ -37,7 +40,7 @@ const {
 } = Astro.props;
 ---
 <!doctype html>
-<html lang="en" style={`--accent:${borderColor}`}>
+<html lang="en" style={`--accent:${borderColor}`} class:list={classList}>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />

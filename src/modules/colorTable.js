@@ -1,5 +1,6 @@
 import slugify from '@sindresorhus/slugify';
 import getColors from './getColors.js'
+import contrastGrade from './contrastGrade.js';
 const contrastText = (contrast) => {
     const good = contrast >= 4.5;
     const goodForLargeText = contrast >= 3;
@@ -48,10 +49,10 @@ const colorList = (colors, headingLevel = 2, prefix = 'color-list') => {
     
     if(colorObjects.length === 2 ){
         const [color1,color2] = colorObjects;
-        console.log(color1.colors[0].contrast)
+        const grade = contrastGrade(color1.colors[0].contrast);
         return `<div class="${prefix}">
         ${heading('Comparison')}
-        <p>        
+        <p class="color-list__item color-list__item--${grade}">        
             ${colorSwatch( color1.name, color1.data, 1 )}
             <span>with</span>
             ${colorSwatch( color2.name, color2.data, 2 )}
@@ -63,8 +64,9 @@ const colorList = (colors, headingLevel = 2, prefix = 'color-list') => {
         return `<div class="${prefix}">
             ${colorObjects.map((color,index)=>{
                 return `${heading(index+1 + `<span style="color:${color.data}">.</span> ` + color.name.trim())}
-                    ${color.colors.map(col => {
-                        return `<p>        
+                ${color.colors.map(col => {
+                        const grade = contrastGrade(col.contrast);
+                        return `<p class="color-list__item color-list__item--${grade}">        
                                 ${colorSwatch(color.name,color.data,1)}
                                 <span>with</span>
                                 ${colorSwatch(col.name,col.data,2)}
