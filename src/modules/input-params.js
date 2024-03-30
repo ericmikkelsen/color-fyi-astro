@@ -15,9 +15,20 @@ class InputParams extends HTMLElement {
         }
 
         // update param on input
-        this.input.addEventListener("input", (event) => {
+        const isInput = this.input.tagName.toLowerCase() === 'input';
+        const isCheckbox = isInput && this.input.getAttribute('type') === 'checkbox'
+        const eventType = isCheckbox ? 'change' : 'input';
+        this.input.addEventListener(eventType, (event) => {
             const url = new URL(window.location.href);
-            url.searchParams.set(this.input.name, this.input.value);
+            if(isCheckbox) {
+                if( this.input.checked){
+                    url.searchParams.set(this.input.name, this.input.value);
+                } else {
+                    url.searchParams.delete(this.input.name);
+                }
+            } else {
+                url.searchParams.set(this.input.name, this.input.value);
+            }
             window.history.pushState(null, null, url); // or pushState
 
             var popStateEvent = new PopStateEvent("popstate");
