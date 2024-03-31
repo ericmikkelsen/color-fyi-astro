@@ -299,11 +299,30 @@ if (colors.length === 2) {
     html.filter-aalarge .color-list__item--aalarge{
         display: block;
     }
+    .color-list__color {
+        border-radius: 1em;
+        border: .25em solid transparent;
+        padding: 2.5%;
+        background-color: var(--color,#000);
+    }
+    * + .color-list__color {
+        margin-top: 1em;
+    }
+    .color-list__color--light {
+        color: #fff;
+    }
+    .color-list__color--dark {
+        color: #000;
+    }
+    compare-colors {
+        display: block;
+        margin-top: 1em;
+    }
     compare-colors h2 {
         font-size: clamp(1.5em, calc(1.125em + 3vw), 4em );
         font-weight: 900;
         line-height: calc(1em + .5rem);
-        margin: 1em 0 0;
+        margin: 0;
     }
     compare-colors h2 span {
         -webkit-text-stroke: .09375rem rgba(118, 118, 118, 0.5);

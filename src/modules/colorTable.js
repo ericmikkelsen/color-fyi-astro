@@ -63,7 +63,9 @@ const colorList = (colors, headingLevel = 2, prefix = 'color-list') => {
     if(colorObjects.length > 2 ) {
         return `<div class="${prefix}">
             ${colorObjects.map((color,index)=>{
-                return `${heading(index+1 + `<span style="color:${color.data}">.</span> ` + color.name.trim())}
+                const isLight = color.data.contrast('black','wcag21') < 4.5;
+                return `<div class="color-list__color ${isLight ? 'color-list__color--light' : 'color-list__color--dark'}" style="--color:${color.data}">
+                    ${heading(index+1 + `. ` + color.name.trim())}
                 ${color.colors.map(col => {
                         const grade = contrastGrade(col.contrast);
                         return `<p class="color-list__item color-list__item--${grade}">        
@@ -73,7 +75,7 @@ const colorList = (colors, headingLevel = 2, prefix = 'color-list') => {
                                 <span class="${prefix}-info">${contrastText(col.contrast)}</span>
                         </p>`;
                     }).join('')}
-                `;
+                </div>`;
             }).join('')}
         </div>`;
     }
