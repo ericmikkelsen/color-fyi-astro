@@ -8,6 +8,14 @@ export default (colors) => {
                 name: colorName.trim(),
                 data: colorObject
             }
+        } catch {}
+        try {
+            const colorObject = new Color('#' + color.trim());
+            const colorName = color.name || '#' + color.trim();
+            return {
+                name: colorName.trim(),
+                data: colorObject
+            }
         } catch {
             return false;
         }
