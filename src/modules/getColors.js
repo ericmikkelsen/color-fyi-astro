@@ -6,13 +6,13 @@ export const formatColors = (colors,pretty = true) => {
     return colors.split(',').map(color => {
         try {
             const colorObject = new Color(color.trim());
-            return color.trim()
+            color = color.trim().toLowerCase();
         } catch {}
         try {
             const colorObject = new Color('#' + color.trim());
-            return '#' + color.trim()
+            return '#' + color.trim().toLowerCase();
         } catch {
-            return color.trim()
+            return color.trim().toLowerCase();
         }
     }).filter(Boolean).join(pretty ? ', ' : ',' )
 }
