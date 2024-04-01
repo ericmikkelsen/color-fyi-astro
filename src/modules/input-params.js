@@ -10,10 +10,11 @@ class InputParams extends HTMLElement {
         // set input to have value from params
         const url = new URL(window.location.href);
         const paramValue = url.searchParams.get(this.input.name) || false;
-        if (paramValue) {
+        if (paramValue && !this.input.value) {
             this.input.value = paramValue;
+        } else if (this.input.value) {
+            url.searchParams.set(this.input.name,this.input.value)
         }
-
         // update param on input
         const isInput = this.input.tagName.toLowerCase() === 'input';
         const isCheckbox = isInput && this.input.getAttribute('type') === 'checkbox'
