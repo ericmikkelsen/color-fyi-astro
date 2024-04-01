@@ -1,4 +1,21 @@
 import Color from "colorjs.io";
+/**
+ * @param {string} colors comma seperated list of colors
+ */
+export const formatColors = (colors,pretty = true) => {
+    return colors.split(',').map(color => {
+        try {
+            const colorObject = new Color(color.trim());
+            return color.trim()
+        } catch {}
+        try {
+            const colorObject = new Color('#' + color.trim());
+            return '#' + color.trim()
+        } catch {
+            return color.trim()
+        }
+    }).filter(Boolean).join(pretty ? ', ' : ',' )
+}
 export default (colors) => {
     const colorObjects = colors.map(color => {
         try {

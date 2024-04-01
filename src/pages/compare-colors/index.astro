@@ -2,6 +2,7 @@
 import Layout from "../../layouts/Layout.astro";
 import Header from "../../components/Header.astro";
 import colorTable from "../../modules/colorTable.js";
+import {formatColors} from '../../modules/getColors'
 import compare2ColorsText from '../../modules/compare2ColorsText'
 
 export const prerender = false;
@@ -28,14 +29,11 @@ const filters = [
         value: Astro.url.searchParams?.get("filter-fail") || false,
     },
 ]
-const colors =
-    Astro.url.searchParams
-        ?.get("colors")
-        ?.split(",")
-        .map((color) => {
-            return color.trim();
-        })
-        .filter(Boolean) || [];
+let colors = [];
+const hasColorsInURL = Astro.url.searchParams?.get("colors")?.split(",").length
+if(hasColorsInURL) {
+    colors = formatColors(Astro.url.searchParams?.get("colors")).split(',').map(color => color.trim())
+}
 const hasColorToAdd = !!Astro.url.searchParams?.get("color") || false;
 if (hasColorToAdd) {
     const colorToAdd = Astro.url.searchParams?.get("color").trim();
@@ -82,8 +80,7 @@ if (colors.length === 2) {
             </label>
             <input-params>
                 <textarea cols="30" id="colors" name="colors" rows="3"
-                    >{colors.join(", ")}</textarea
-                >
+                    >{colors.join(", ")}</textarea>
                 <div class="input-example">
                     For example: #ff0000, #ffffff, #fb0
                 </div>
@@ -364,6 +361,9 @@ if (colors.length === 2) {
 <script src="../../modules/compare-colors.js"></script>
 <script src="../../modules/input-params.js"></script>
 <script>
+    import {formatColors} from '../../modules/getColors.js'
+    import { colorStyles } from '../index.astro';
+
     const getColors = () => {
         const url = new URL(window.location.href);
         const colorString = url.searchParams.get("colors");
@@ -414,4 +414,11 @@ if (colors.length === 2) {
         const changeEvent = new Event("input");
         input.dispatchEvent(changeEvent);
     });
+    const colorTextInput = document.getElementById('colors');
+    colorTextInput.addEventListener('blur',(event) => {
+        const colors = formatColors(colorTextInput.value)
+        if(colors !== colorTextInput.value) {
+            colorTextInput.value = colors;
+        }
+    })
 </script>
