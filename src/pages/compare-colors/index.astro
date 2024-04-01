@@ -361,7 +361,7 @@ if (colors.length === 2) {
 <script src="../../modules/compare-colors.js"></script>
 <script src="../../modules/input-params.js"></script>
 <script>
-    import { colorStyles } from '../index.astro';
+    import {formatColors} from '../../modules/getColors.js'
 
     const getColors = () => {
         const url = new URL(window.location.href);
@@ -413,4 +413,11 @@ if (colors.length === 2) {
         const changeEvent = new Event("input");
         input.dispatchEvent(changeEvent);
     });
+    const colorTextInput = document.getElementById('colors');
+    colorTextInput.addEventListener('blur',(event) => {
+        const colors = formatColors(colorTextInput.value)
+        if(colors !== colorTextInput.value) {
+            colorTextInput.value = colors;
+        }
+    })
 </script>
