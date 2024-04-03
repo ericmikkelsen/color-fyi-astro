@@ -3,7 +3,8 @@ import Color from "colorjs.io";
  * @param {string} colors comma seperated list of colors
  */
 export const formatColors = (colors,pretty = true) => {
-    return colors.split(',').map(color => {
+    const uniqueColors = [...new Set(colors.split(',').map(color=>color.trim()))];
+    return uniqueColors.map(color => {
         try {
             const colorObject = new Color(color.trim());
             color = color.trim().toLowerCase();
