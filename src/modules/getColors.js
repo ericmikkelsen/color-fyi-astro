@@ -3,8 +3,7 @@ import Color from "colorjs.io";
  * @param {string} colors comma seperated list of colors
  */
 export const formatColors = (colors,pretty = true) => {
-    const uniqueColors = [...new Set(colors.split(',').map(color=>color.trim()))];
-    return uniqueColors.map(color => {
+    const formattedColors = colors.split(',').map(color => {
         try {
             const colorObject = new Color(color.trim());
             color = color.trim().toLowerCase();
@@ -15,7 +14,9 @@ export const formatColors = (colors,pretty = true) => {
         } catch {
             return color.trim().toLowerCase();
         }
-    }).filter(Boolean).join(pretty ? ', ' : ',' )
+    }).filter(Boolean);
+    const uniqueColors = [...new Set(formattedColors)];
+    return uniqueColors.join(pretty ? ', ' : ',');
 }
 export default (colors) => {
     const uniqueColors = [...new Set(colors)];
