@@ -78,7 +78,7 @@ if (colors.length === 2) {
                     of colors are accessible or not.
                 </span>
             </label>
-            <input-params>
+            <input-params class="colors__input-wrapper" data-value={colors.join(", ")}>
                 <textarea cols="30" id="colors" name="colors" rows="3"
                     >{colors.join(", ")}</textarea>
                 <div class="input-example">
@@ -144,7 +144,23 @@ if (colors.length === 2) {
         margin-top: 1em;
         line-height: 1.5;
     }
+    @supports (display: grid) {
+        input-params.colors__input-wrapper {
+            display: grid;
+        }
+        .colors__input-wrapper:after {
+            content: attr(data-value) ' ';
+            visibility: hidden;
+            margin: 0;
+        }
+    }
+    .colors__input-wrapper {
+        margin: 1em 0 0;
+    }
+    .colors__input-wrapper:after,
     textarea {
+        font-family: monospace;
+        grid-area: 1/1;
         border: 0.25em solid #000;
         border-bottom: 0;
         border-radius: 1em;
@@ -154,7 +170,7 @@ if (colors.length === 2) {
         color: #000;
         display: block;
         font-size: 1rem;
-        margin: 1em 0 0;
+        min-height: 100%;
         padding: 2.5%;
         resize: vertical;
         width: 100%;
@@ -418,6 +434,14 @@ if (colors.length === 2) {
         const colors = formatColors(colorTextInput.value)
         if(colors !== colorTextInput.value) {
             colorTextInput.value = colors;
+            const changeEvent = new Event("input");
+            colorTextInput.dispatchEvent(changeEvent);
         }
+    })
+    /**
+     * @link https://css-tricks.com/auto-growing-inputs-textareas/
+     */
+    colorTextInput.addEventListener('input',(event) => {
+        colorTextInput.parentElement.dataset.value = colorTextInput.value;
     })
 </script>
