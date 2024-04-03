@@ -434,6 +434,8 @@ if (colors.length === 2) {
         const colors = formatColors(colorTextInput.value)
         if(colors !== colorTextInput.value) {
             colorTextInput.value = colors;
+            const changeEvent = new Event("input");
+            colorTextInput.dispatchEvent(changeEvent);
         }
     })
     /**
