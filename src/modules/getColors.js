@@ -17,7 +17,8 @@ export const formatColors = (colors,pretty = true) => {
     }).filter(Boolean).join(pretty ? ', ' : ',' )
 }
 export default (colors) => {
-    const colorObjects = colors.map(color => {
+    const uniqueColors = [...new Set(colors)];
+    const colorObjects = uniqueColors.map(color => {
         try {
             const colorObject = new Color(color.trim());
             const colorName = color.name || color;
