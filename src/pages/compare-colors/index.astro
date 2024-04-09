@@ -428,6 +428,8 @@ if (colors.length === 2) {
             : colorPicker.value;
         const changeEvent = new Event("input");
         input.dispatchEvent(changeEvent);
+        const blurEvent = new Event("blur");
+        input.dispatchEvent(blurEvent);
     });
     const colorTextInput = document.getElementById('colors');
     colorTextInput.addEventListener('blur',(event) => {
