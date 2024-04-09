@@ -426,10 +426,15 @@ if (colors.length === 2) {
         input.value = input.value
             ? `${input.value}, ${colorPicker.value}`
             : colorPicker.value;
-        const changeEvent = new Event("input");
+        // input.style.minHeight = input.scrollHeight;
+        const inputEvent = new Event("input");
+        input.dispatchEvent(inputEvent);
+        const changeEvent = new Event("change");
         input.dispatchEvent(changeEvent);
         const blurEvent = new Event("blur");
         input.dispatchEvent(blurEvent);
+        const focusOutEvent = new Event("focusout");
+        input.dispatchEvent(focusOutEvent);
     });
     const colorTextInput = document.getElementById('colors');
     colorTextInput.addEventListener('blur',(event) => {
