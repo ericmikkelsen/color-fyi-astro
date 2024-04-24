@@ -5,10 +5,9 @@ import colorTable from "../../modules/colorTable.js";
 import {formatColors} from '../../modules/getColors'
 import compare2ColorsText from '../../modules/compare2ColorsText'
 
-export const prerender = false;
 // https://www.netlify.com/blog/swr-and-fine-grained-cache-control/#how-do-these-new-edge-caching-features-work
-Astro.response.headers.set('Cache-Control', 'public, max-age=0, must-revalidate');
-Astro.response.headers.set('Netlify-CDN-Cache-Control', 'public, max-age=31536000, must-revalidate');
+// Astro.response.headers.set('Cache-Control', 'public, max-age=0, must-revalidate');
+// Astro.response.headers.set('Netlify-CDN-Cache-Control', 'public, max-age=0, stale-while-revalidate=31536000');
 const filters = [
     {
         id: 'filter-aa',
@@ -58,7 +57,6 @@ let description = '';
 if (colors.length === 2) {
     image = `${url}/compare-colors/2colors.png?colors=${encodeURIComponent(colors[0])},${encodeURIComponent(colors[1])}`;
     let comparisonText = compare2ColorsText(colors[0],colors[1]);
-    // console.log(comparisonText);
     if(comparisonText) {
         title = comparisonText.text;
         description = comparisonText.description;
@@ -66,9 +64,14 @@ if (colors.length === 2) {
 }
 ---
 
-<Layout title={title} image={image} url={url} description={description} classList={filters.map( filter => {
-    return filter.value ? filter.name : false
-}).filter(Boolean)}>
+<Layout 
+    title={title} 
+    image={image} url={url} 
+    description={description} 
+    classList={filters.map( filter => {
+        return filter.value ? filter.name : false
+}   ).filter(Boolean)}
+>
     <Header>Compare colors</Header>
     <main>
         <form action="./">
