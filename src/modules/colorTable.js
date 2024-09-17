@@ -55,7 +55,6 @@ const colorList = (colors, headingLevel = 2, prefix = 'color-list') => {
         ${heading('Comparison')}
         <p class="color-list__item color-list__item--${grade}">        
             ${colorSwatch( color1.name, color1.data, 1 )}
-            <span>with</span>
             ${colorSwatch( color2.name, color2.data, 2 )}
             <span class="${prefix}-info">${contrastText(color1.colors[0].contrast)}</span>
         </p>
