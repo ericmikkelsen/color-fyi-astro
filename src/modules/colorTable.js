@@ -8,18 +8,18 @@ const contrastText = (contrast) => {
     const iconX = `<svg class="icon-no" xmlns="http://www.w3.org/2000/svg" width="24" height="24" stroke="currentColor" stroke-width="4">
     <path d="m6 6 12 12M6 18 18 6"/>
   </svg>`
-    let text = `${iconX} is not accessible with a contrast of ${readableContrast}`
+    let text = `${iconX} <span>is not accessible with a contrast of ${readableContrast}</span>`
     if(good) {
         text = `<svg class="icon-yes" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="4" fill="none">
         <path d="m19.9 5.8-10 11-6-5"/>
-    </svg> is accessible with a contrast of ${readableContrast}`
+    </svg> <span>is accessible with a contrast of ${readableContrast}</span>`
     } else if (goodForLargeText) {
         text = `<svg class="icon-large" xmlns="http://www.w3.org/2000/svg" width="24" height="24" stroke-width="2"
         style="fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round"    
             >
          <path d="M19.5 18.7h-15l7.5-13Z"/>
          <path d="M12 10.9v2.4zm0 5v.1z"/>
-       </svg> is only accessible for large text with a contrast of ${readableContrast}`
+       </svg> <span>is only accessible for large text with a contrast of ${readableContrast}</span>`
     }
     return text
 }
@@ -39,10 +39,11 @@ const colorList = (colors, headingLevel = 2, prefix = 'color-list') => {
             ${text}
         </h${h}>`;
     }
-    const colorSwatch = (name,color,number) => {
+    const colorSwatch = (name,fill,number,stroke = fill) => {
+        const strokeAttribute = stroke ? `stroke="${stroke}"` : ''
         return `<span class="${prefix}-color-${number}">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 16 16">
-            <circle fill="${color}" cx="8" cy="8" r="7"/>
+            <circle fill="${fill}" ${strokeAttribute} cx="8" cy="8" r="7" />
             </svg> 
             ${name} ${number === 1 ? ' with ' : ''}
         </span>`
@@ -69,7 +70,7 @@ const colorList = (colors, headingLevel = 2, prefix = 'color-list') => {
                 ${color.colors.map(col => {
                         const grade = contrastGrade(col.contrast);
                         return `<p class="color-list__item color-list__item--${grade}">        
-                                ${colorSwatch(color.name,color.data,1)}
+                                ${colorSwatch(color.name,color.data,1, col.data )}
                                 ${colorSwatch(col.name,col.data,2)}
                                 <span class="${prefix}-info">${contrastText(col.contrast)}</span>
                         </p>`;
