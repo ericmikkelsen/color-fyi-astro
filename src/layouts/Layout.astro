@@ -39,8 +39,8 @@ const {
     url="",
 } = Astro.props;
 const date = new Date();
-const today = date.toLocaleDateString('us-PT');
-const now = date.toLocaleTimeString('en-US');
+const today = date.toLocaleDateString('en-US');
+const now = date.toLocaleTimeString('us-PT');
 ---
 <!doctype html>
 <html lang="en" style={`--accent:${borderColor}`} class:list={classList}>
