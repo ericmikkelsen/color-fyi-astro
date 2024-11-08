@@ -38,11 +38,12 @@ const {
 	theme_color,
     url="",
 } = Astro.props;
-const date = new Date();
-const today = date.toLocaleDateString('en-US');
-const now = date.toLocaleTimeString('PT',{
-	hour12: true,
+const timeFormatter = new Intl.DateTimeFormat("en-US", {
+  dateStyle: "short",
+  timeStyle: "medium",
+  timeZone: "America/Los_Angeles",
 });
+const buildTime = timeFormatter.format(new Date());
 ---
 <!doctype html>
 <html lang="en" style={`--accent:${borderColor}`} class:list={classList}>
@@ -77,7 +78,7 @@ const now = date.toLocaleTimeString('PT',{
 			title={title}
 		/>
 	</head>
-	<body data-build={`${today} ${now}`}>
+	<body data-build={`${buildTime}`}>
 		<nav class="container">
 			{navLinks.map(link => {
 				return <a 
