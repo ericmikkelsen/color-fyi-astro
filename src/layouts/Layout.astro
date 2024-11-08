@@ -40,7 +40,9 @@ const {
 } = Astro.props;
 const date = new Date();
 const today = date.toLocaleDateString('en-US');
-const now = date.toLocaleTimeString('us-PT');
+const now = date.toLocaleTimeString('PT',{
+	hour12: true,
+});
 ---
 <!doctype html>
 <html lang="en" style={`--accent:${borderColor}`} class:list={classList}>
