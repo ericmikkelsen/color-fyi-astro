@@ -10,16 +10,13 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/netlify": "^5.2.0",
-    "@astrojs/sitemap": "^3.1.2",
+    "@astrojs/netlify": "^5.5.4",
+    "@astrojs/sitemap": "^3.2.1",
     "@resvg/resvg-js": "^2.6.0",
     "@sindresorhus/slugify": "^2.2.1",
-    "astro": "^4.5.12",
+    "astro": "^4.16.10",
     "colorjs.io": "^0.5.0",
     "mini-svg-data-uri": "^1.4.4",
     "vite-plugin-pwa": "^0.19.7"
-  },
-  "devDependencies": {
-    "@types/sharp": "^0.32.0"
   }
 }
