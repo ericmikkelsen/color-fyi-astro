@@ -1,6 +1,7 @@
 import { Resvg } from "@resvg/resvg-js";
 import type { APIContext } from 'astro';
 import getColors from "../../modules/getColors";
+import { formatDate } from "../../modules/now";
 export async function GET(context: APIContext) {
   // https://www.polpiella.dev/generating-beautiful-open-graph-images-dynamically
   const url = new URL(context.request.url);
@@ -29,6 +30,7 @@ export async function GET(context: APIContext) {
         "Content-Type": "image/png",
         "Cache-Control": "public, max-age=0, must-revalidate", // Tell browsers to always revalidate
         "Netlify-CDN-Cache-Control": "public, durable, max-age=31536000", // Tell Edge to cache asset for up to a year
+        "Build-Date": formatDate(),
       },
     });
   }
