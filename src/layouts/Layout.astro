@@ -38,12 +38,6 @@ const {
 	theme_color,
     url="",
 } = Astro.props;
-const timeFormatter = new Intl.DateTimeFormat("en-US", {
-  dateStyle: "short",
-  timeStyle: "medium",
-  timeZone: "America/Los_Angeles",
-});
-const buildTime = timeFormatter.format(new Date());
 ---
 <!doctype html>
 <html lang="en" style={`--accent:${borderColor}`} class:list={classList}>
@@ -78,7 +72,7 @@ const buildTime = timeFormatter.format(new Date());
 			title={title}
 		/>
 	</head>
-	<body data-build={`${buildTime}`}>
+	<body>
 		<nav class="container">
 			{navLinks.map(link => {
 				return <a 

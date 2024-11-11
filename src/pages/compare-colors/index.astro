@@ -6,7 +6,14 @@ import {formatColors} from '../../modules/getColors'
 import compare2ColorsText from '../../modules/compare2ColorsText'
 
 // https://www.netlify.com/blog/swr-and-fine-grained-cache-control/#how-do-these-new-edge-caching-features-work
+const timeFormatter = new Intl.DateTimeFormat("en-US", {
+  dateStyle: "short",
+  timeStyle: "medium",
+  timeZone: "America/Los_Angeles",
+});
+const buildDate = timeFormatter.format(new Date());
 Astro.response.headers.set('Netlify-CDN-Cache-Control', 'public, durable, s-maxage=31536000');
+Astro.response.headers.set('Build-Date', buildDate);
 const filters = [
     {
         id: 'filter-aa',
